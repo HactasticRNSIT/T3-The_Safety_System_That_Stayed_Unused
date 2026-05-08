@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SafeNest</title>
+
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <nav class="navbar">
@@ -30,33 +33,25 @@
 <section class="hero">
 
 <div class="hero-left">
-
 <h1>Your <span>safety companion</span>, always one tap away.</h1>
 
 <p>
-SafeNest AI helps protect you,
-your family,
-and your community with smart SOS,
-voice emergency detection,
-live location sharing,
-and community alerts.
+Live emergency detection, AI voice triggers, real-time GPS tracking,
+and instant alerts to your trusted contacts.
 </p>
 
 <div class="hero-buttons">
-<button class="primary-btn">Open Dashboard</button>
-<button class="secondary-btn">Add Contacts</button>
+<button class="primary-btn">Dashboard</button>
+<button class="secondary-btn">Contacts</button>
 </div>
-
 </div>
 
 <div class="hero-right">
-
 <button class="sos-circle" onclick="activateSOS()">
 🚨
 <span>SOS</span>
 <p>TAP FOR HELP</p>
 </button>
-
 </div>
 
 </section>
@@ -65,93 +60,69 @@ and community alerts.
 
 <div class="feature-card">
 <h2>📍 Live Location</h2>
-<p id="location">Waiting for location...</p>
+<p id="location">Waiting...</p>
+
+<iframe id="mapFrame"
+width="100%"
+height="200"
+style="border-radius:12px; margin-top:10px; display:none;">
+</iframe>
 </div>
 
 <div class="feature-card">
+<h2>🔋 Battery</h2>
+<p id="batteryStatus">Loading...</p>
+</div>
 
-<h2>🎤 Voice Emergency Detection</h2>
+<div class="feature-card">
+<h2>👨‍👩‍👧 Emergency Contacts</h2>
 
-<p>
-SafeNest can detect screams,
-panic words,
-or distress voice patterns.
-</p>
+<input id="contactName" placeholder="Name">
+<input id="contactNumber" placeholder="Number">
+
+<button class="contact-btn" onclick="saveContact()">Save Contact</button>
+
+<div id="savedContacts"></div>
+</div>
+
+<div class="feature-card">
+<h2>🚓 Emergency Services</h2>
+
+<button class="contact-btn" onclick="openPolice()">Police</button>
+<button class="share-btn" onclick="openHospital()">Hospital</button>
+</div>
+
+<div class="feature-card">
+<h2>🎤 Voice Detection</h2>
 
 <label class="switch">
 <input type="checkbox" id="voiceToggle">
 <span class="slider"></span>
 </label>
 
-<p id="micStatus">
-🎙️ Microphone inactive
-</p>
-
+<p id="micStatus">Mic Off</p>
 </div>
 
 <div class="feature-card">
+<h2>🌍 Community</h2>
 
-<h2>👨‍👩‍👧 Emergency Contacts</h2>
+<div class="community-alert">⚠ Accident nearby</div>
+<div class="community-alert">👮 Patrol active</div>
+</div>
 
-<input type="text" id="contactName" placeholder="Contact Name">
+<div class="feature-card">
+<h2>✅ Safety Check</h2>
 
-<input type="tel" id="contactNumber" placeholder="Phone Number">
-
-<button class="contact-btn" onclick="saveContact()">
-Save Emergency Contact
+<button class="contact-btn" onclick="sendSafeMessage()">
+I AM SAFE NOW
 </button>
-
-<div id="savedContacts"></div>
-
-</div>
-
-<div class="feature-card">
-
-<h2>🚓 Nearby Emergency Services</h2>
-
-<button class="contact-btn" onclick="openPolice()">
-👮 Find Nearby Police
-</button>
-
-<button class="share-btn" onclick="openHospital()">
-🏥 Find Nearby Hospital
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<h2>🌍 Community Alerts</h2>
-
-<div class="community-alert">
-⚠️ Traffic accident reported nearby
-</div>
-
-<div class="community-alert">
-👮 Increased police patrol in your area
-</div>
-
-<div class="community-alert">
-🚧 Road maintenance nearby
-</div>
-
-</div>
-
-<div class="feature-card">
-
-<h2>🔋 Device Status</h2>
-
-<p id="batteryStatus">
-Loading battery...
-</p>
-
 </div>
 
 </section>
 
-<footer class="footer">
-<p>© 2026 SafeNest AI — Smart protection for everyone.</p>
-</footer>
+<div id="smsBox"></div>
+
+<audio id="siren" src="siren.mp3"></audio>
 
 <script src="script.js"></script>
 
